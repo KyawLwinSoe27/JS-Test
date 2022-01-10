@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click to get Random Color</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        main
+        {
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 10px 70px;
+            height: 500px;
+            text-align: center;
+            padding-top: 20px;
+        }
+        h4
+        {
+           
+            line-height: 1.5;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 10px;
+            font-size: 25px;
+            
+        }
+        .btn
+        {
+            
+            text-align: center;
+            margin-top: 30px;
+            display: inline-block;
+            margin-top: 50px;
+
+        }
+
+        @media only screen and (max-width: 414px) {
+        main
+        {
+            margin-top: 20px;
+            border: 2px solid red;
+            width: 100%;
+            border-radius: 10px 70px;
+            height: 300px;
+            text-align: center;
+            padding-top: 20px;
+        }
+        h4
+        {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 20px;
+            width: 100%;
+        }
+        .btn
+        {
+            
+            text-align: center;
+            margin-top: 20px;
+            display: inline-block;
+
+        }
+        .container
+        {
+            width: 300px;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <h4>Background Color: <p class="color" id="color">#010101</p></h4>
+        </div>
+        <div class="btn">
+            <button type="checkbox" class="btn btn-primary"id="btn">Click to Change Colors</button>
+            <button type="checkbox" class="btn btn-secondary"id="btn2">Click to get Color Code</button>
+        </div>
+    </main>
+
+    <script>
+
+        const hexColors = [0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F"];
+        const color = document.querySelector(".color");
+        const btn = document.getElementById("btn");
+        const btn2 = document.getElementById("btn2");
+        const container = document.querySelector(".container");
+        const main = document.querySelector(".main");
+
+
+        btn.addEventListener("click", function(){
+            let hex = "#";
+            for(let i=0; i<6; i++){
+                hex += hexColors[RandomColor()]; 
+            };
+            main.style.backgroundColor = hex;
+            container.style.backgroundColor = hex;
+            color.textContent = hex;
+        });
+
+        function RandomColor(){
+           return Math.floor(Math.random()*hexColors.length);
+        }
+
+
+        btn2.addEventListener("click", function(){
+
+            const color2 = document.getElementsByClassName("color")[0];
+            console.log(color2);
+            /* select the text */
+            color2[0].select();
+            color2[0].setSelectionRange(0, 99999); 
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(color2[0].value);
+  
+            /* Alert the copied text */
+            alert("Copied the text: " + color2[0].value);
+            
+        });
+
+
+    </script>
+    
+</body>
+</html>
